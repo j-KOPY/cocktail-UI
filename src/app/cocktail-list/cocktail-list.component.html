@@ -1,0 +1,7 @@
+<div class="container">
+    <button (click)="filterAlcoholic()">{{alcoholFilter}}</button>
+    <app-cocktail-item 
+        [cocktails]="cocktails"
+        (onAddFavorite)="onAddFavoriteCocktail($event)">
+    </app-cocktail-item>
+</div>
