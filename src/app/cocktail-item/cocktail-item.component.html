@@ -1,0 +1,91 @@
+<style>
+    .cocktail-card {
+        margin: 0 0 1rem;
+        padding: 0.5rem;
+        max-width: 340px;
+        display: grid;
+        grid-template-columns: 2fr 3fr 1fr;
+
+        background-color: #FFFFFF;
+        border-radius: 16px;
+        box-shadow: 4px 4px 12px #CFC7B4;
+    }
+
+    .cocktail-category {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+
+        text-align: right;
+    }
+
+    .cocktail-heart {
+        text-align: right;
+    }
+
+    .cocktail-img {
+        grid-row: auto / span 2;
+        border-radius: 8px;
+
+        width: 100px;
+    }
+
+    .cocktail-ingredients {
+        /* grid-column: auto / span 2; */
+
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+    }
+
+    .cocktail-text {
+        font-size: 0.75rem;
+    }
+    .cocktail-title {
+        font-family: 'Playfair Display', serif;
+    }
+
+    .container {
+        padding: 1rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    @media screen and (min-width: 700px) {
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+    }
+</style>
+
+<div class="container">
+    <div
+    class="cocktail-card"
+    *ngFor="let cocktail of cocktails; index as i">
+        <img class="cocktail-img" src="{{cocktail.strDrinkThumb}}">
+        <span class="cocktail-title">{{cocktail.strDrink}}</span>
+        <span class="cocktail-heart material-symbols-outlined" 
+            (click)="onAddFavoriteCocktail(i)"
+            [ngStyle]="{'color':cocktail.favorite ? 'red' : 'none'}">favorite</span>
+        <div class="cocktail-ingredients">
+            <div *ngIf="cocktail.strMeasure1">
+                <span class="cocktail-text">{{cocktail.strMeasure1}}</span>
+                <span class="cocktail-text">{{cocktail.strIngredient1}}</span>
+            </div>
+            <div *ngIf="cocktail.strMeasure2">
+                <span class="cocktail-text">{{cocktail.strMeasure2}}</span>
+                <span class="cocktail-text">{{cocktail.strIngredient2}}</span>
+            </div>
+            <div *ngIf="cocktail.strMeasure3">
+                <span class="cocktail-text">{{cocktail.strMeasure3}}</span>
+                <span class="cocktail-text">{{cocktail.strIngredient3}}</span>
+            </div>
+        </div>
+        <div class="cocktail-category">
+            <span class="cocktail-text">{{cocktail.strCategory}}</span>
+            <span class="cocktail-text">{{cocktail.strAlcoholic}}</span>
+        </div>
+    </div>
+</div>
